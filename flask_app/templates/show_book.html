@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Show Book</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    <div>
+        <h1>Book: {{book.title}}</h1>
+        <h3>Favorited By:</h3>
+        {% for author in book.authors_who_favorited %}
+            <p>{{author.name}}</p>
+        {% endfor %}
+    </div>
+    <hr>
+    <h3>Add Book's Favorite</h3>
+    <div class="dropdown">
+    <form action="/merge/author" method="POST">
+        <input type="hidden" name="book_id" value="{{book.id}}">
+            <label for="user_id">Author:</label>
+            <select name="user_id">
+                <option></option>
+                {% for user in unfavorited_authors %}
+                    <option value="{{user.id}}">{{user.name}}</option>
+                {% endfor %}
+            </select>
+        <input type="submit" value="Add Author">
+    </form>
+    </div>
+</body>
+</html>

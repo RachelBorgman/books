@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+    <h1>All Authors</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for one_author in all_authors %}
+            <tr>
+                    <td>{{one_author.id}}</td>
+                    <td>{{one_author.name}}</td>
+                    <td>{{one_author.created_at}}</td>
+                    <td><a href="/show_author/{{one_author.id}}">Show</a> | <a href="/edit_author/{{one_author.id}}">Edit</a> | <a href="/delete_author/{{one_author.id}}">Delete</a></td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <h2>Add an Author</h2>
+    <form action="/created_author" method="POST">
+        <label for="name">Author Name:</label>
+        <input type="text" name="name">
+        <input type="submit" value="Submit">
+    </form> 
+<hr>
+<a href="/books">All Books</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</body>
+</html>
